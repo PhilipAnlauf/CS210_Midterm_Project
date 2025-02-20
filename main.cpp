@@ -111,4 +111,5 @@ int main()
     schooList.display();
 
 }
+
 //Comment to redo a proper push to the CS210_Milestone_Project git repo
