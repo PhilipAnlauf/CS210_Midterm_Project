@@ -172,8 +172,6 @@ class CSVReader
 
 int main()
 {
-    //TODO: Rework main() in order to add just csv file schools and to give user interaction/input
-
     schoolSinglyLinkedList<string> schoolList;
     CSVReader csv;
 
