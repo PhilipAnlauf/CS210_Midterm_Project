@@ -22,7 +22,7 @@ class schoolSinglyLinkedList
     public:
         schoolSinglyLinkedList() : head(nullptr) {}
 
-        ~schoolSinglyLinkedList();
+        ~schoolSinglyLinkedList() {};
 
         void insertLast(string nameIN, string addressIN, string cityIN, string stateIN, string countyIN)
         {
@@ -174,27 +174,63 @@ int main()
 {
     //TODO: Rework main() in order to add just csv file schools and to give user interaction/input
 
-    schoolSinglyLinkedList<string> schooList;
+    schoolSinglyLinkedList<string> schoolList;
     CSVReader csv;
 
-    schooList.insertLast("Belvadeer Highschool", "123 Cherry Ln.", "Gary", "Indiana", "Cook");
-    schooList.insertLast("Peoria Highschool", "321 Cherry Ln.", "Peoria", "Illinois", "Peoria");
-    schooList.insertLast("Applewood Highschool", "123 Apple Ln.", "Chicago", "Illinois", "Cook");
-    schooList.deleteByName("Peoria Highschool");
-    schooList.display();
-    schooList.findByName("Peoria Highschool");
-    schooList.findByName("Belvadeer Highschool");
-    vector<vector<string>> csvSchoolList = csv.readCSV("//home/phil/CLionProjects/Midterm project /schoolList.csv");
+    vector<vector<string>> csvSchoolList = csv.readCSV("//home/phil/CLionProjects/CS210_Midterm_Project/schoolList.csv");
 
     vector<string> holdingVector;
     for (int i = 0; i < csvSchoolList.size(); i++) {
         for (int j = 0; j < csvSchoolList[i].size(); j++) {
             holdingVector.push_back(csvSchoolList[i][j]);
         }
-        schooList.insertFirst(holdingVector.at(0), holdingVector.at(1), holdingVector.at(2), holdingVector.at(3), holdingVector.at(4));
+        schoolList.insertFirst(holdingVector.at(0), holdingVector.at(1), holdingVector.at(2), holdingVector.at(3), holdingVector.at(4));
         holdingVector.clear();
     }
 
-    schooList.display();
+    //insert first/last test
+    schoolList.insertLast("Belvadeer Highschool", "123 Cherry Ln.", "Gary", "Indiana", "Cook");
+    schoolList.insertFirst("Peoria Highschool", "321 Cherry Ln.", "Peoria", "Illinois", "Peoria");
 
+    short input;
+    string schoolName;
+    while (true)
+    {
+        cout << "1. List schools." << endl;
+        cout << "2. Search for school by name." << endl;
+        cout << "3. Delete school by it's name." << endl;
+        cout << "4. exit." << endl;
+
+        cin >> input;
+        cin.ignore();
+        cin.clear();
+
+        switch (input)
+        {
+            case 1:
+                schoolList.display();
+                cout << endl;
+                break;
+            case 2:
+                cout << "School name?: ";
+                getline(cin, schoolName);
+                cin.ignore();
+                cin.clear();
+                schoolList.findByName(schoolName);
+                cout << endl;
+                break;
+            case 3:
+                cout << "School name?: ";
+                getline(cin, schoolName);
+                cin.ignore();
+                cin.clear();
+                cout << endl;
+                schoolList.deleteByName(schoolName);
+                break;
+            case 4:
+                return 0;
+            default:
+                cout << "Invalid input." << endl;
+        }
+    }
 }
