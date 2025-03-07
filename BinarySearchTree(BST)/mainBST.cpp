@@ -61,12 +61,6 @@ class binarySearchTree
               }
 
         }
-    /*TODO:
-*1. Create Deletion method, handling nodes with no children, one child, or two child nodes
-*2. DisplayInOrder() method
-*3. DisplayPreOrder() method
-*4. DisplayPostOrder() method
-*/
 
         School<T>* getMinimumNode(School<T>* schoolIN)
         {
