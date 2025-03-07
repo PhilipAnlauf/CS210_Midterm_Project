@@ -9,7 +9,8 @@ template <typename T>
 struct School
 {
     School(T nameIN, T addressIN, T cityIN, T stateIN, T countyIN): name(nameIN),
-           address(addressIN), city(cityIN), state(stateIN), county(countyIN), leftChild(nullptr), rightChild(nullptr) {}
+           address(addressIN), city(cityIN), state(stateIN), county(countyIN),
+           leftChild(nullptr), rightChild(nullptr) {}
 
     T name, address, city, state, county; //String details for the school
 
@@ -60,6 +61,98 @@ class binarySearchTree
               }
 
         }
+    /*TODO:
+*1. Create Deletion method, handling nodes with no children, one child, or two child nodes
+*2. DisplayInOrder() method
+*3. DisplayPreOrder() method
+*4. DisplayPostOrder() method
+*/
+
+        School<T>* getMinimumNode(School<T>* schoolIN)
+        {
+            while (schoolIN->leftChild != nullptr)
+            {
+                schoolIN = schoolIN->leftChild;
+            }
+
+            return schoolIN;
+        }
+
+        School<T>* getMaximumNode(School<T>* schoolIN)
+        {
+            while (schoolIN->rightChild != nullptr)
+            {
+                schoolIN = schoolIN->rightChild;
+            }
+
+            return schoolIN;
+        }
+
+        void deleteNode(string schoolName)
+        {
+            School<T>* temp = root;
+            School<T>* tempParent = nullptr;
+
+            while (temp != nullptr && temp->name != schoolName)
+            {
+                tempParent = temp;
+                if (schoolName > temp->name)
+                {
+                    temp = temp->rightChild;
+                }
+                else if (schoolName < temp->name)
+                {
+                    temp = temp->leftChild;
+                }
+            }
+
+            if (temp == nullptr)
+            {
+                cout << "School not found";
+                return;
+            }
+
+            //If node has no children
+            if (temp->leftChild == nullptr && temp->rightChild == nullptr)
+            {
+                if (tempParent->leftChild == temp)
+                {
+                    tempParent->leftChild = nullptr;
+                }
+                else if (tempParent->rightChild == temp)
+                {
+                    tempParent->rightChild = nullptr;
+                }
+                delete temp;
+                return;
+            }
+            //if node has left child
+            if (temp->leftChild != nullptr && temp->rightChild == nullptr)
+            {
+                School<T>* hold = getMaximumNode(temp->leftChild);
+                temp->name = hold->name;
+                temp->address = hold->address;
+                temp->city = hold->city;
+                temp->state = hold->state;
+                temp->county = hold->county;
+                deleteNode(hold->name);
+                return;
+            }
+            //if node has right child/has two children
+            if ((temp->leftChild == nullptr && temp->rightChild != nullptr) || (temp->leftChild != nullptr && temp->rightChild != nullptr))
+            {
+                School<T>* hold = getMinimumNode(temp->rightChild);
+                temp->name = hold->name;
+                temp->address = hold->address;
+                temp->city = hold->city;
+                temp->state = hold->state;
+                temp->county = hold->county;
+                deleteNode(hold->name);
+                return;
+            }
+        }
+
+
 };
 
 //Given class.
@@ -162,9 +255,8 @@ int main()
 }
 
 /*TODO:
- *1. Create Deletion method, handling nodes with no children, one child, or two child nodes
- *2. DisplayInOrder() method
- *3. DisplayPreOrder() method
- *4. DisplayPostOrder() method
+ *1. DisplayInOrder() method
+ *2. DisplayPreOrder() method
+ *3. DisplayPostOrder() method
  */
 
