@@ -62,6 +62,28 @@ class binarySearchTree
 
         }
 
+        void findByName(string* nameIN)
+        {
+            School<T>* temp = root;
+            while(temp != nullptr)
+            {
+                if(temp->name == nameIN)
+                {
+                    cout << temp->name << ", " << temp->address << ", " << temp->city << ", " << temp->state << ", " << temp->county << endl;
+                    return;
+                }
+                if(nameIN > temp->name)
+                {
+                    temp = temp->rightChild;
+                }
+                else
+                {
+                    temp = temp->leftChild;
+                }
+            }
+            cout << "No such school" << endl;
+        }
+
         School<T>* getMinimumNode(School<T>* schoolIN)
         {
             while (schoolIN->leftChild != nullptr)
@@ -229,7 +251,7 @@ int main()
                 getline(cin, schoolName);
                 cin.ignore();
                 cin.clear();
-                //schoolList.findByName(schoolName);
+                schoolList.findByName(schoolName);
                 cout << endl;
                 break;
             case 3:
