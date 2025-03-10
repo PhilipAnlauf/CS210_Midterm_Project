@@ -62,7 +62,7 @@ class binarySearchTree
 
         }
 
-        void findByName(string* nameIN)
+        void findByName(string& nameIN)
         {
             School<T>* temp = root;
             while(temp != nullptr)
@@ -116,7 +116,7 @@ class binarySearchTree
                 {
                     temp = temp->rightChild;
                 }
-                else if (schoolName < temp->name)
+                else
                 {
                     temp = temp->leftChild;
                 }
@@ -124,13 +124,17 @@ class binarySearchTree
 
             if (temp == nullptr)
             {
-                cout << "School not found";
+                cout << "School not found" << endl;
                 return;
             }
 
             //If node has no children
             if (temp->leftChild == nullptr && temp->rightChild == nullptr)
             {
+                if (temp == root)
+                {
+                    root = nullptr;
+                }
                 if (tempParent->leftChild == temp)
                 {
                     tempParent->leftChild = nullptr;
@@ -146,26 +150,74 @@ class binarySearchTree
             if (temp->leftChild != nullptr && temp->rightChild == nullptr)
             {
                 School<T>* hold = getMaximumNode(temp->leftChild);
-                temp->name = hold->name;
+                string nameHold = hold->name;
                 temp->address = hold->address;
                 temp->city = hold->city;
                 temp->state = hold->state;
                 temp->county = hold->county;
                 deleteNode(hold->name);
+                temp->name = nameHold;
                 return;
             }
             //if node has right child/has two children
-            if ((temp->leftChild == nullptr && temp->rightChild != nullptr) || (temp->leftChild != nullptr && temp->rightChild != nullptr))
+            if (temp->rightChild != nullptr)
             {
                 School<T>* hold = getMinimumNode(temp->rightChild);
-                temp->name = hold->name;
+                string nameHold = hold->name;
                 temp->address = hold->address;
                 temp->city = hold->city;
                 temp->state = hold->state;
                 temp->county = hold->county;
                 deleteNode(hold->name);
+                temp->name = nameHold;
                 return;
             }
+        }
+
+        void displayInOrder(School<T>* schoolIN)
+        {
+            if(schoolIN == nullptr)
+            {
+                return;
+            }
+            displayInOrder(schoolIN->leftChild);
+            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state << ", " << schoolIN->county << endl;
+            displayInOrder(schoolIN->rightChild);
+        }
+
+        void displayPreOrder(School<T>* schoolIN)
+        {
+            if(schoolIN == nullptr)
+            {
+                return;
+            }
+            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state << ", " << schoolIN->county << endl;
+            displayInOrder(schoolIN->leftChild);
+            displayInOrder(schoolIN->rightChild);
+        }
+
+        void displayPostOrder(School<T>* schoolIN)
+        {
+            if(schoolIN == nullptr)
+            {
+                return;
+            }
+            displayInOrder(schoolIN->leftChild);
+            displayInOrder(schoolIN->rightChild);
+            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state << ", " << schoolIN->county << endl;
+        }
+
+        void display()
+        {
+            cout << "Display in order:" << endl;
+            displayInOrder(root);
+            cout << endl;
+            cout << "Display pre order:" << endl;
+            displayPreOrder(root);
+            cout << endl;
+            cout << "Display post order:" << endl;
+            displayPostOrder(root);
+            cout << endl;
         }
 
 
@@ -236,32 +288,29 @@ int main()
         cout << "3. Delete school by it's name." << endl;
         cout << "4. exit." << endl;
 
-        cin >> input;
-        cin.ignore();
-        cin.clear();
+        string choiceHold;
+        getline(cin, choiceHold);
+
+        input = stoi(choiceHold);
 
         switch (input)
         {
             case 1:
-                //schoolList.display();
-                cout << endl;
-                break;
+                schoolList.display();
+            cout << endl;
+            break;
             case 2:
                 cout << "School name?: ";
-                getline(cin, schoolName);
-                cin.ignore();
-                cin.clear();
-                schoolList.findByName(schoolName);
-                cout << endl;
-                break;
+            getline(cin, schoolName);
+            schoolList.findByName(schoolName);
+            cout << endl;
+            break;
             case 3:
                 cout << "School name?: ";
-                getline(cin, schoolName);
-                cin.ignore();
-                cin.clear();
-                cout << endl;
-                //schoolList.deleteByName(schoolName);
-                break;
+            getline(cin, schoolName);
+            cout << endl;
+            schoolList.deleteNode(schoolName);
+            break;
             case 4:
                 return 0;
             default:

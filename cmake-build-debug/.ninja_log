@@ -1,21 +1,5 @@
 # ninja log v6
-1	437	1740336756005905229	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-437	485	1740336756441946026	Midterm_project_	4dfb3048ddb4354
-1	427	1740336814563929326	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-428	475	1740336814990962841	Midterm_project_	4dfb3048ddb4354
-1	428	1740336873807201406	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-428	475	1740336874234229667	Midterm_project_	4dfb3048ddb4354
-1	422	1740337028639638551	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-422	468	1740337029060657455	Midterm_project_	4dfb3048ddb4354
-1	634	1740337446927795194	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-635	747	1740337447560931138	Midterm_project_	4dfb3048ddb4354
-12	581	1740337473080200752	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-581	642	1740337473649313665	Midterm_project_	4dfb3048ddb4354
-1	434	1740337501153551739	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-434	484	1740337501586630848	Midterm_project_	4dfb3048ddb4354
-0	493	1740337941574723563	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-494	545	1740337942068758670	Midterm_project_	4dfb3048ddb4354
-1	440	1740337963414253629	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
-440	488	1740337963853283953	Midterm_project_	4dfb3048ddb4354
 2	436	1740337987175871183	CMakeFiles/Midterm_project_.dir/main.cpp.o	7e5b03e43f31dd1a
 436	482	1740337987609900295	Midterm_project_	4dfb3048ddb4354
+3	661	1741623641781928686	CMakeFiles/Midterm_project_.dir/main.cpp.o	7a4179b001b42b12
+661	718	1741623642439809985	Midterm_project_	4dfb3048ddb4354
