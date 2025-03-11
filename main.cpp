@@ -175,7 +175,7 @@ int main()
     schoolSinglyLinkedList<string> schoolList;
     CSVReader csv;
 
-    vector<vector<string>> csvSchoolList = csv.readCSV("//home/phil/CLionProjects/CS210_Midterm_Project/schoolList.csv");
+    vector<vector<string>> csvSchoolList = csv.readCSV("schools_list.csv");
 
     vector<string> holdingVector;
     for (int i = 0; i < csvSchoolList.size(); i++) {

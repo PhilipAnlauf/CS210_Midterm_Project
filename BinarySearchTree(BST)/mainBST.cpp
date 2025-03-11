@@ -69,7 +69,8 @@ class binarySearchTree
             {
                 if(temp->name == nameIN)
                 {
-                    cout << temp->name << ", " << temp->address << ", " << temp->city << ", " << temp->state << ", " << temp->county << endl;
+                    cout << temp->name << ", " << temp->address << ", " << temp->city << ", " << temp->state << ", "
+                         << temp->county << endl;
                     return;
                 }
                 if(nameIN > temp->name)
@@ -181,7 +182,8 @@ class binarySearchTree
                 return;
             }
             displayInOrder(schoolIN->leftChild);
-            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state << ", " << schoolIN->county << endl;
+            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state
+                 << ", " << schoolIN->county << endl;
             displayInOrder(schoolIN->rightChild);
         }
 
@@ -191,7 +193,8 @@ class binarySearchTree
             {
                 return;
             }
-            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state << ", " << schoolIN->county << endl;
+            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state
+                 << ", " << schoolIN->county << endl;
             displayInOrder(schoolIN->leftChild);
             displayInOrder(schoolIN->rightChild);
         }
@@ -204,7 +207,8 @@ class binarySearchTree
             }
             displayInOrder(schoolIN->leftChild);
             displayInOrder(schoolIN->rightChild);
-            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state << ", " << schoolIN->county << endl;
+            cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state
+                 << ", " << schoolIN->county << endl;
         }
 
         void display()
@@ -260,7 +264,7 @@ int main()
     binarySearchTree<string> schoolList;
     CSVReader csv;
 
-    vector<vector<string>> csvSchoolList = csv.readCSV("schoolList.csv");
+    vector<vector<string>> csvSchoolList = csv.readCSV("schools_list.csv");
 
     vector<string> holdingVector;
     for (int i = 0; i < csvSchoolList.size(); i++) {
@@ -268,16 +272,13 @@ int main()
             holdingVector.push_back(csvSchoolList[i][j]);
         }
 
-        School<string>* temp = new School(holdingVector.at(0), holdingVector.at(1), holdingVector.at(2), holdingVector.at(3), holdingVector.at(4));
+        School<string>* temp = new School(holdingVector.at(0), holdingVector.at(1),
+                                           holdingVector.at(2), holdingVector.at(3),
+                                         holdingVector.at(4));
 
         schoolList.insert(temp);
         holdingVector.clear();
     }
-
-    School<string>* temp = new School<string>("Belvadeer Highschool", "123 Cherry Ln.", "Gary", "Indiana", "Cook");
-    schoolList.insert(temp);
-    temp = new School<string>("Peoria Highschool", "321 Cherry Ln.", "Peoria", "Illinois", "Peoria");
-    schoolList.insert(temp);
 
     short input;
     string schoolName;
@@ -318,10 +319,3 @@ int main()
         }
     }
 }
-
-/*TODO:
- *1. DisplayInOrder() method
- *2. DisplayPreOrder() method
- *3. DisplayPostOrder() method
- */
-
