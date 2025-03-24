@@ -85,9 +85,9 @@ class schoolSinglyLinkedList
                 return;
             }
             //Otherwise the program will loop checking if temps next to see if its the school to delete, if so
-            //temps next is held in a temporary object called hold, temps next is then assigne as temps next next
+            //temps next is held in a temporary object called hold, temps next is then assign as temps next next
             //and the school in hold is then deleted and method ends
-            while (temp->next != nullptr)
+            while (temp->next != nullptr && temp != nullptr)
             {
                 if (temp->next->name == nameIN)
                 {
@@ -96,7 +96,9 @@ class schoolSinglyLinkedList
                     delete hold;
                     return;
                 }
+                temp = temp->next;
             }
+            cout << "No such school." << endl;
 
         }
 
@@ -199,9 +201,9 @@ int main()
         cout << "3. Delete school by it's name." << endl;
         cout << "4. exit." << endl;
 
-        cin >> input;
-        cin.ignore();
-        cin.clear();
+        string choiceHold;
+        getline(cin, choiceHold);
+        input = stoi(choiceHold);
 
         switch (input)
         {
@@ -212,16 +214,12 @@ int main()
             case 2:
                 cout << "School name?: ";
                 getline(cin, schoolName);
-                cin.ignore();
-                cin.clear();
                 schoolList.findByName(schoolName);
                 cout << endl;
                 break;
             case 3:
                 cout << "School name?: ";
                 getline(cin, schoolName);
-                cin.ignore();
-                cin.clear();
                 cout << endl;
                 schoolList.deleteByName(schoolName);
                 break;
