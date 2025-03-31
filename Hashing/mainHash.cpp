@@ -17,6 +17,76 @@ struct School
     School* next;
 };
 
+int getHashIndex(string& schoolNameIN)
+{
+    int asciiIntSum = 0;
+    for(const char character : schoolNameIN)
+    {
+        asciiIntSum += stoi(to_string(static_cast<int>(character)));
+    }
+    return asciiIntSum % 100;
+}
+
+class SchoolHashTable
+{
+    private:
+        School* schoolList[100] = {nullptr};
+    public:
+        void insertSchool(School* newSchool)
+        {
+            const int hashIndex = getHashIndex(newSchool->name);
+
+            if (hashIndex == -1) { return; }
+            if(schoolList[hashIndex] == nullptr) { schoolList[hashIndex] = newSchool; return;}
+            School* temp = schoolList[hashIndex];
+            while(temp->next != nullptr)
+            {
+                temp = temp->next;
+            }
+            temp->next = newSchool;
+        }
+
+        void display()
+        {
+            for (auto& i : schoolList)
+            {
+                if (i != nullptr)
+                {
+                    cout << i->name << ", " << i->address << ", " << i->city << ", "
+                         << i->state << ", " << i->county << endl;
+                    School *temporarySchool = i->next;
+                    while (temporarySchool != nullptr)
+                    {
+                        cout << temporarySchool->name << ", " << temporarySchool->address << ", " << temporarySchool->city << ", "
+                             << temporarySchool->state << ", " << temporarySchool->county << endl;
+                        temporarySchool = temporarySchool->next;
+                    }
+                }
+            }
+            cout << endl;
+        }
+
+    void findByName(string schoolName) const
+    {
+            const School *temporarySchool = schoolList[getHashIndex(schoolName)];
+            while (temporarySchool != nullptr)
+            {
+                if (temporarySchool->name == schoolName)
+                {
+                    cout << temporarySchool->name << ", " << temporarySchool->address << ", " << temporarySchool->city << ", "
+                         << temporarySchool->state << ", " << temporarySchool->county << endl;
+                    cout << endl;
+                    return;
+                }
+                temporarySchool = temporarySchool->next;
+            }
+            cout << "School not found" << endl;
+            cout << endl;
+    }
+
+};
+
+
 //Given class.
 class CSVReader
 {
@@ -48,33 +118,9 @@ class CSVReader
         }
 };
 
-int getHashIndex(string& schoolNameIN)
-{
-      int asciiIntSum = 0;
-      for(const char character : schoolNameIN)
-      {
-            asciiIntSum += stoi(to_string(static_cast<int>(character)));
-      }
-      return asciiIntSum % 100;
-}
-
-void insertSchool(School* newSchool, School* schoolListIN[])
-{
-    int hashIndex = getHashIndex(newSchool->name);
-
-    if (hashIndex == -1) { return; }
-    if(schoolListIN[hashIndex] == nullptr) { schoolListIN[hashIndex] = newSchool; return;}
-    School* temp = schoolListIN[hashIndex];
-    while(temp->next != nullptr)
-    {
-      temp = temp->next;
-    }
-    temp->next = newSchool;
-}
-
 int main()
 {
-    School* schoolList[100] = {nullptr};
+    SchoolHashTable hashSchoolList;
     CSVReader csv;
 
     vector<vector<string>> csvSchoolList = CSVReader::readCSV("schools_list.csv");
@@ -89,7 +135,7 @@ int main()
                                           holdingVector.at(2), holdingVector.at(3),
                                           holdingVector.at(4));
 
-        insertSchool(temp, schoolList);
+        hashSchoolList.insertSchool(temp);
         holdingVector.clear();
     }
 
@@ -104,57 +150,25 @@ int main()
         string choiceHold;
         getline(cin, choiceHold);
 
-        School* temporarySchool;
-        bool temporaryBoolean;
-
         switch (stoi(choiceHold))
         {
             case 1:
-                for (auto& i : schoolList)
-                {
-                    if (i != nullptr)
-                    {
-                        cout << i->name << ", " << i->address << ", " << i->city << ", "
-                             << i->state << ", " << i->county << endl;
-                        temporarySchool = i->next;
-                        while (temporarySchool != nullptr)
-                        {
-                            cout << temporarySchool->name << ", " << temporarySchool->address << ", " << temporarySchool->city << ", "
-                                 << temporarySchool->state << ", " << temporarySchool->county << endl;
-                            temporarySchool = temporarySchool->next;
-                        }
-                    }
-                }
-                cout << endl;
+                hashSchoolList.display();
             break;
             case 2:
-                temporaryBoolean = false;
                 cout << "School name?: ";
                 getline(cin, schoolName);
-                temporarySchool = schoolList[getHashIndex(schoolName)];
-                while (temporarySchool != nullptr)
-                {
-                    if (temporarySchool->name == schoolName)
-                    {
-                        cout << temporarySchool->name << ", " << temporarySchool->address << ", " << temporarySchool->city << ", "
-                             << temporarySchool->state << ", " << temporarySchool->county << endl;
-                        temporaryBoolean = true;
-                        cout << endl;
-                        break;
-                    }
-                    temporarySchool = temporarySchool->next;
-                }
-                if (temporaryBoolean) { break; }
-                cout << "School not found" << endl;
-                cout << endl;
+                hashSchoolList.findByName(schoolName);
             break;
             case 3:
                 cout << "School name?: ";
                 getline(cin, schoolName);
                 cout << endl;
-
                 break;
-
+            case 4:
+                return 0;
+            default:
+                cout << "Invalid choice." << endl;
         }
     }
 }
