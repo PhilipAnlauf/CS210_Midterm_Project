@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Midterm_project_.dir/main.cpp.obj"
-  "CMakeFiles/Midterm_project_.dir/main.cpp.obj.d"
-  "Midterm_project_.exe"
-  "Midterm_project_.exe.manifest"
+  "CMakeFiles/Midterm_project_.dir/main.cpp.o"
+  "CMakeFiles/Midterm_project_.dir/main.cpp.o.d"
+  "Midterm_project_"
   "Midterm_project_.pdb"
-  "libMidterm_project_.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

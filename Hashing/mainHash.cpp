@@ -7,6 +7,7 @@
 
 using namespace std;
 
+//Struct school holds typical data on a school as well as a next pointer for linked list storage
 struct School
 {
     string name, address, city, state, county; //String details for the school
@@ -17,6 +18,8 @@ struct School
     School* next;
 };
 
+//The get hash index will add the ascii value of each character in the name of the school and get the modulo of 100
+//from the summed ascii value to place the school in an index
 int getHashIndex(string& schoolNameIN)
 {
     int asciiIntSum = 0;
@@ -27,11 +30,15 @@ int getHashIndex(string& schoolNameIN)
     return asciiIntSum % 100;
 }
 
+//Class SchoolHashTableHolds methods and array for the hash table of schools
 class SchoolHashTable
 {
     private:
+        //A array of schools size 100 is created all initialized to nullptr
         School* schoolList[100] = {nullptr};
     public:
+        //InsertSchool will take a school in, get it's has index with getHashIndex(school name) and place according to
+        //linked list traversal in the index it was assigned
         void insertSchool(School* newSchool)
         {
             const int hashIndex = getHashIndex(newSchool->name);
@@ -46,6 +53,8 @@ class SchoolHashTable
             temp->next = newSchool;
         }
 
+        //display will traverse through all indexes of the array and if a index has a school it will then traverse
+        //that index as it would a linked list until it reaches a nullptr, printing all values of each school
         void display()
         {
             for (auto& i : schoolList)
@@ -66,6 +75,8 @@ class SchoolHashTable
             cout << endl;
         }
 
+    //Find by name will take a name in and first get its hash index for the name given, it will then go to that index
+    //and traverse as you would a linked list checking each name until a match is found, if nullptr is reached school doesnt exist
     void findByName(string schoolName) const
     {
             const School *temporarySchool = schoolList[getHashIndex(schoolName)];
@@ -84,6 +95,11 @@ class SchoolHashTable
             cout << endl;
     }
 
+    //Delete by name takes a name in and gets it's hash index with the given name and checks to see, it first checks to
+    //see if the first index is a null school, meaning nothing is in that index, it will then check if the first index
+    //is the toDelete school, if so it will hold it in a new variable and then set the first index to the next school
+    //it will then delete the original index to free the memory, afterwards it will traverse the same way it would a
+    //linked list and then delete and reassign as needed
     void deleteByName(string schoolName)
     {
             if (schoolList[getHashIndex(schoolName)] == nullptr)
@@ -91,6 +107,7 @@ class SchoolHashTable
                 cout << "School not found" << endl;
                 return;
             }
+
             School *temporarySchool = schoolList[getHashIndex(schoolName)];
 
             if (temporarySchool->name == schoolName)

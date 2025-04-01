@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/Phil/CLionProjects/CS210_Midterm_Project/main.cpp" "CMakeFiles/Midterm_project_.dir/main.cpp.obj" "gcc" "CMakeFiles/Midterm_project_.dir/main.cpp.obj.d"
+  "/home/phil/CLionProjects/CS210_Midterm_Project/main.cpp" "CMakeFiles/Midterm_project_.dir/main.cpp.o" "gcc" "CMakeFiles/Midterm_project_.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

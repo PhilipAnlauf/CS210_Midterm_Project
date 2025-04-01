@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Midterm_project_.exe"
-		},
-		{
-			"path" : "Midterm_project_.pdb"
+			"path" : "Midterm_project_"
 		}
 	],
 	"backtrace" : 1,
@@ -68,16 +65,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "Midterm_project_",
-	"nameOnDisk" : "Midterm_project_.exe",
+	"nameOnDisk" : "Midterm_project_",
 	"paths" : 
 	{
 		"build" : ".",
