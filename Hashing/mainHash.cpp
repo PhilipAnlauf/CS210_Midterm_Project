@@ -84,6 +84,36 @@ class SchoolHashTable
             cout << endl;
     }
 
+    void deleteByName(string schoolName)
+    {
+            if (schoolList[getHashIndex(schoolName)] == nullptr)
+            {
+                cout << "School not found" << endl;
+                return;
+            }
+            School *temporarySchool = schoolList[getHashIndex(schoolName)];
+
+            if (temporarySchool->name == schoolName)
+            {
+                schoolList[getHashIndex(schoolName)] = temporarySchool->next;
+                delete temporarySchool;
+                return;
+            }
+            while (temporarySchool->next != nullptr)
+            {
+                if (temporarySchool->next->name == schoolName)
+                {
+                    const School *hold = temporarySchool->next;
+                    temporarySchool->next = temporarySchool->next->next;
+                    delete hold;
+                    return;
+                }
+                temporarySchool = temporarySchool->next;
+            }
+            cout << "School not found" << endl;
+            cout << endl;
+    }
+
 };
 
 
@@ -163,6 +193,7 @@ int main()
             case 3:
                 cout << "School name?: ";
                 getline(cin, schoolName);
+                hashSchoolList.deleteByName(schoolName);
                 cout << endl;
                 break;
             case 4:
