@@ -158,7 +158,7 @@ class CSVReader
                 cerr << "Error: Could not open file " << filename << endl;
                 return data;
             }
-//
+
             while (getline(file, line))
             {
                 stringstream ss(line);

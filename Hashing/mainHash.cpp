@@ -84,7 +84,7 @@ class SchoolHashTable
             cout << "School not found" << endl;
             cout << endl;
     }
-//
+
     void deleteByName(string schoolName)
     {
             if (schoolList[getHashIndex(schoolName)] == nullptr)
