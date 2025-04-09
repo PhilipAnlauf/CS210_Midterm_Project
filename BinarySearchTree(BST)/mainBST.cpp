@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -38,7 +39,7 @@ class binarySearchTree
 
               School<T>* temp = root;
 
-              while(temp != nullptr)
+              while(true)
               {
                    if(schoolIN->name < temp->name)
                    {
@@ -57,6 +58,15 @@ class binarySearchTree
                            return;
                        }
                        temp = temp->rightChild;
+                   }
+                   else
+                   {
+                       if(temp->leftChild == nullptr)
+                       {
+                           temp->leftChild = schoolIN;
+                           return;
+                       }
+                       temp = temp->leftChild;
                    }
               }
 
@@ -213,12 +223,12 @@ class binarySearchTree
 
         void display()
         {
-            cout << "Display in order:" << endl;
-            displayInOrder(root);
-            cout << endl;
-            cout << "Display pre order:" << endl;
-            displayPreOrder(root);
-            cout << endl;
+            // cout << "Display in order:" << endl;
+            // displayInOrder(root);
+            // cout << endl;
+            // cout << "Display pre order:" << endl;
+            // displayPreOrder(root);
+            // cout << endl;
             cout << "Display post order:" << endl;
             displayPostOrder(root);
             cout << endl;
@@ -264,21 +274,26 @@ int main()
     binarySearchTree<string> schoolList;
     CSVReader csv;
 
-    vector<vector<string>> csvSchoolList = csv.readCSV("schools_list.csv");
+    auto start = chrono::high_resolution_clock::now();
+    vector<vector<string>> csvSchoolList = csv.readCSV("Illinois_Schools.csv");
+    //vector<vector<string>> csvSchoolList = csv.readCSV("USA_Schools.csv");
 
     vector<string> holdingVector;
     for (int i = 0; i < csvSchoolList.size(); i++) {
         for (int j = 0; j < csvSchoolList[i].size(); j++) {
             holdingVector.push_back(csvSchoolList[i][j]);
         }
-
-        School<string>* temp = new School(holdingVector.at(0), holdingVector.at(1),
+        auto* temp = new School(holdingVector.at(0), holdingVector.at(1),
                                            holdingVector.at(2), holdingVector.at(3),
                                          holdingVector.at(4));
 
         schoolList.insert(temp);
         holdingVector.clear();
     }
+    auto end = chrono::high_resolution_clock::now();
+    auto timeTaken = chrono::duration_cast<chrono::microseconds>(end - start).count();
+    cout << "Time taken to insert (BST): " << timeTaken << " microseconds" << endl;
+
 
     short input;
     string schoolName;
@@ -294,23 +309,39 @@ int main()
 
         input = stoi(choiceHold);
 
+        auto startTime = chrono::high_resolution_clock::now();
+        auto end = chrono::high_resolution_clock::now();
+        auto timeTaken = chrono::duration_cast<chrono::microseconds>(end - startTime).count();
+
         switch (input)
         {
             case 1:
+                startTime = chrono::high_resolution_clock::now();
                 schoolList.display();
+                end = chrono::high_resolution_clock::now();
+                timeTaken = chrono::duration_cast<chrono::microseconds>(end - startTime).count();
+                cout << "Time taken: " << timeTaken << " microseconds" << endl;
             cout << endl;
             break;
             case 2:
                 cout << "School name?: ";
             getline(cin, schoolName);
+            startTime = chrono::high_resolution_clock::now();
             schoolList.findByName(schoolName);
+            end = chrono::high_resolution_clock::now();
+            timeTaken = chrono::duration_cast<chrono::microseconds>(end - startTime).count();
+            cout << "Time taken: " << timeTaken << " microseconds" << endl;
             cout << endl;
             break;
             case 3:
                 cout << "School name?: ";
             getline(cin, schoolName);
+            startTime = chrono::high_resolution_clock::now();
             cout << endl;
             schoolList.deleteNode(schoolName);
+            end = chrono::high_resolution_clock::now();
+            timeTaken = chrono::duration_cast<chrono::microseconds>(end - startTime).count();
+            cout << "Time taken: " << timeTaken << " microseconds" << endl;
             break;
             case 4:
                 return 0;

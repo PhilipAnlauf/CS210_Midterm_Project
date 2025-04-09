@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 #include <bitset>
+#include <chrono>
 
 using namespace std;
 
@@ -24,13 +25,13 @@ int getHashIndex(string& schoolNameIN)
     {
         asciiIntSum += stoi(to_string(static_cast<int>(character)));
     }
-    return asciiIntSum % 100;
+    return asciiIntSum % 800;
 }
 
 class SchoolHashTable
 {
     private:
-        School* schoolList[100] = {nullptr};
+        School* schoolList[1000] = {nullptr};
     public:
         void insertSchool(School* newSchool)
         {
@@ -153,7 +154,9 @@ int main()
     SchoolHashTable hashSchoolList;
     CSVReader csv;
 
-    vector<vector<string>> csvSchoolList = CSVReader::readCSV("schools_list.csv");
+    auto start = chrono::high_resolution_clock::now();
+    //vector<vector<string>> csvSchoolList = csv.readCSV("Illinois_Schools.csv");
+    vector<vector<string>> csvSchoolList = csv.readCSV("USA_Schools.csv");
 
     vector<string> holdingVector;
     for (auto & i : csvSchoolList) {
@@ -168,7 +171,10 @@ int main()
         hashSchoolList.insertSchool(temp);
         holdingVector.clear();
     }
+    auto end = chrono::high_resolution_clock::now();
+    auto timeTaken = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
+    cout << "Insertion time taken (Hash): " << timeTaken << " microseconds"<< endl;
     string schoolName;
     while (true)
     {
@@ -183,17 +189,29 @@ int main()
         switch (stoi(choiceHold))
         {
             case 1:
+                start = chrono::high_resolution_clock::now();
                 hashSchoolList.display();
+                end = chrono::high_resolution_clock::now();
+                timeTaken = chrono::duration_cast<chrono::microseconds>(end - start).count();
+                cout << "Time taken to display (Hash): " << timeTaken << " microseconds" << endl;
             break;
             case 2:
                 cout << "School name?: ";
                 getline(cin, schoolName);
+                start = chrono::high_resolution_clock::now();
                 hashSchoolList.findByName(schoolName);
+                end = chrono::high_resolution_clock::now();
+                timeTaken = chrono::duration_cast<chrono::microseconds>(end - start).count();
+                cout << "Time taken to search by name (Hash): " << timeTaken << " microseconds" << endl;
             break;
             case 3:
                 cout << "School name?: ";
                 getline(cin, schoolName);
+                start = chrono::high_resolution_clock::now();
                 hashSchoolList.deleteByName(schoolName);
+                end = chrono::high_resolution_clock::now();
+                timeTaken = chrono::duration_cast<chrono::microseconds>(end - start).count();
+                cout << "Time taken to delete by name (Hash): " << timeTaken << " microseconds" << endl;
                 cout << endl;
                 break;
             case 4:

@@ -80,12 +80,12 @@ clean: CMakeFiles/Midterm_project_.dir/clean
 CMakeFiles/Midterm_project_.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Midterm_project_.dir\build.make CMakeFiles/Midterm_project_.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Midterm_project_.dir\build.make CMakeFiles/Midterm_project_.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Phil\CLionProjects\CS210_Midterm_Project\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target Midterm_project_"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Phil\CLionProjects\CS210_Midterm_Project\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target Midterm_project_"
 .PHONY : CMakeFiles/Midterm_project_.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Midterm_project_.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Phil\CLionProjects\CS210_Midterm_Project\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Phil\CLionProjects\CS210_Midterm_Project\cmake-build-debug\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Midterm_project_.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Phil\CLionProjects\CS210_Midterm_Project\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/Midterm_project_.dir/rule

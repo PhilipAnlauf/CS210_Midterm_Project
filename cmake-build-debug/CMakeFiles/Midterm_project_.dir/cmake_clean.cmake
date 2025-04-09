@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Midterm_project_.dir/main.cpp.obj"
   "CMakeFiles/Midterm_project_.dir/main.cpp.obj.d"
+  "CMakeFiles/Midterm_project_.dir/timeTesting.cpp.obj"
+  "CMakeFiles/Midterm_project_.dir/timeTesting.cpp.obj.d"
   "Midterm_project_.exe"
   "Midterm_project_.exe.manifest"
   "Midterm_project_.pdb"

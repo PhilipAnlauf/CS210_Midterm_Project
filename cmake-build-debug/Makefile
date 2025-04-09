@@ -152,6 +152,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Midterm_project_.dir\build.make CMakeFiles/Midterm_project_.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+timeTesting.obj: timeTesting.cpp.obj
+.PHONY : timeTesting.obj
+
+# target to build an object file
+timeTesting.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Midterm_project_.dir\build.make CMakeFiles/Midterm_project_.dir/timeTesting.cpp.obj
+.PHONY : timeTesting.cpp.obj
+
+timeTesting.i: timeTesting.cpp.i
+.PHONY : timeTesting.i
+
+# target to preprocess a source file
+timeTesting.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Midterm_project_.dir\build.make CMakeFiles/Midterm_project_.dir/timeTesting.cpp.i
+.PHONY : timeTesting.cpp.i
+
+timeTesting.s: timeTesting.cpp.s
+.PHONY : timeTesting.s
+
+# target to generate assembly for a file
+timeTesting.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Midterm_project_.dir\build.make CMakeFiles/Midterm_project_.dir/timeTesting.cpp.s
+.PHONY : timeTesting.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -164,6 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... timeTesting.obj
+	@echo ... timeTesting.i
+	@echo ... timeTesting.s
 .PHONY : help
 
 
