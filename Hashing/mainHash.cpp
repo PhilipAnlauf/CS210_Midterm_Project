@@ -27,7 +27,7 @@ int getHashIndex(string& schoolNameIN)
     }
     return asciiIntSum % 800;
 }
-
+//
 class SchoolHashTable
 {
     private:
