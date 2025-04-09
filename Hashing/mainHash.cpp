@@ -5,7 +5,7 @@
 #include <vector>
 #include <bitset>
 #include <chrono>
-//
+
 using namespace std;
 
 struct School
