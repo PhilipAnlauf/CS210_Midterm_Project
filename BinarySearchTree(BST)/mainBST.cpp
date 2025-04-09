@@ -220,7 +220,7 @@ class binarySearchTree
             cout << schoolIN->name << ", " << schoolIN->address << ", " << schoolIN->city << ", " << schoolIN->state
                  << ", " << schoolIN->county << endl;
         }
-
+//
         void display()
         {
             // cout << "Display in order:" << endl;
